@@ -1,4 +1,4 @@
-//我已经成功用vscode打开这个Java文件了！！
+//我已经成功用vscode打开这个Java文件了！
 public class SnakeGame extends AudGameWindow{
     public static int score = 0;
     public static final int SQUARE_SIZE = 16;
