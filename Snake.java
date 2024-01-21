@@ -1,6 +1,6 @@
 public class Snake {
     private int length;
-    public static Point[] points;     //Erstellen eines Arrays von Punkten, das ist die laenge und die Position von der Schlange
+    public static Point[] points;
     public static Point[] newPoints;
     private final AudColor color = AudColor.BLUE;
     public final int GROW_AMOUNT = 5;
