@@ -1,6 +1,6 @@
 public class Snake {
     private int length;
-    public static Point[] points;
+    public static Point[] points;//设置点集成一个数组，这个数组就是蛇的长度
     public static Point[] newPoints;
     private final AudColor color = AudColor.BLUE;
     public final int GROW_AMOUNT = 5;
