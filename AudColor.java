@@ -1,7 +1,7 @@
 // =================================
 // DO NOT MODIFY THIS CLASS
 // =================================
-
+//提供本程序中的所有颜色
 import java.beans.ConstructorProperties;
 
 public class AudColor {

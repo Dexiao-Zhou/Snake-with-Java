@@ -32,7 +32,7 @@ public class Brick extends GameItem{
         return y;
     }
 
-    public void createWall(){
+    public void createWall(){ //创建墙的方法
         wall = new Point[SnakeGame.height *2 + SnakeGame.width * 2 +4];
         for (int i = 0; i <= SnakeGame.height; i++){
             if(wall!=null){
