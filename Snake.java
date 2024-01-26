@@ -1,11 +1,11 @@
 public class Snake {
     private int length;
-    public static Point[] points;//设置点集成一个数组，这个数组就是蛇的长度
+    public static Point[] points; //设置点集成一个数组，这个数组就是蛇的长度
     public static Point[] newPoints;
     private final AudColor color = AudColor.BLUE;
     public final int GROW_AMOUNT = 5;
 
-    Snake(int length, int x, int y) {    //Struktur mit 3 Parameters
+    Snake(int length, int x, int y) {    //三个参数的构造函数
         if (length <= 0) {
             throw new IllegalArgumentException("The length must be positiv number!");
         }
@@ -18,9 +18,9 @@ public class Snake {
 
     }
 
-    Snake(int x, int y) {    //Struktur mit x und y
-        length = 5;     //The Length of Snake ist 5 zuerst
-        points = new Point[length];    //erstellen die Laenge von der Schlange
+    Snake(int x, int y) {    //两个参数的构造函数
+        length = 6;     
+        points = new Point[length];    //设置蛇的长度
         for (int i = 1; i < length; i++) {
             points[i - 1] = new Point(x, y);
             points[i] = null;
