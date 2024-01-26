@@ -19,7 +19,7 @@ public class Snake {
     }
 
     Snake(int x, int y) {    //两个参数的构造函数
-        length = 6;     
+        length = 8;     
         points = new Point[length];    //设置蛇的长度
         for (int i = 1; i < length; i++) {
             points[i - 1] = new Point(x, y);
