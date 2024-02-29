@@ -1,14 +1,25 @@
+/**
+ * This class represents the Snake game.
+ */
 public class SnakeGame extends AudGameWindow{
+    // Static variables for game parameters
     public static int score = 0;
     public static final int SQUARE_SIZE = 16;
     public static int height;
     public static int width;
+
+    // Objects for game elements
     Snake snake;
     Brick brick;
     static Apple apple;
+
+    // Constant for controlling the speed of the snake
     public static final int STEP_TIME = 100; //change the speed of the snake
+
+    // Variable to track the time of the first snake update
     long firstSnakeUpdate;
 
+    // Constructor to initialize the game
     SnakeGame(){
         setTitle("AuD-Snake - Score:"+ score);
         height = getGameAreaHeight()/SQUARE_SIZE;
@@ -19,6 +30,7 @@ public class SnakeGame extends AudGameWindow{
         createNewApple();
     }
 
+    // Method to update the game state
     @Override
     public void updateGame(long time) {
         time = System.currentTimeMillis() + STEP_TIME;
@@ -28,11 +40,9 @@ public class SnakeGame extends AudGameWindow{
         }
 
         snake.step();
-        //createNewApple();
         if (checkCollisions()) {
             showDialog("Your Score is " + score);
             stop();
-
         } else if (snake.collidesWithSelf()) {
             showDialog("Your Score is " + score);
             stop();
@@ -41,7 +51,6 @@ public class SnakeGame extends AudGameWindow{
         height = getGameAreaHeight()/SQUARE_SIZE;
         width = getGameAreaWidth()/SQUARE_SIZE;
         if (Snake.points[0].getX() == Apple.applePosition.getX() && Snake.points[0].getY() == Apple.applePosition.getY()) {
-
             snake.grow((height - 1) * (width - 1));
 
             for (int i = 0; i< snake.GROW_AMOUNT; i++) {
@@ -52,16 +61,16 @@ public class SnakeGame extends AudGameWindow{
         }
     }
 
+    // Method to paint the game elements
     @Override
     public void paintGame(AudGraphics g) {
         snake.paint(g);
         brick = new Brick();
         brick.paint(g);
         apple.paint(g);
-
-
     }
 
+    // Method to handle user input
     @Override
     public void handleInput(int keyCode) {
         switch (keyCode){
@@ -90,10 +99,12 @@ public class SnakeGame extends AudGameWindow{
         }
     }
 
+    // Method to check for collisions
     public boolean checkCollisions(){
         return snake.collidesWith(brick);
     }
 
+    // Method to create a new apple
     public static void createNewApple(){
         int x = (int)(Math.random()*(width-2)) + 1;
         int y = (int)(Math.random()*(height-2)) + 1;
@@ -106,6 +117,7 @@ public class SnakeGame extends AudGameWindow{
         apple = new Apple(x * SQUARE_SIZE,y * SQUARE_SIZE);
     }
 
+    // Main method to start the game
     public static void main(String[] args){
         SnakeGame SnakeGame1 = new SnakeGame();
         SnakeGame1.start();

@@ -1,32 +1,46 @@
+/**
+ * This class represents the snake in the game.
+ */
 public class Snake {
+    // Length of the snake
     private int length;
-    public static Point[] points; //设置点集成一个数组，这个数组就是蛇的长度
+
+    // Array to hold the points representing the snake's body
+    public static Point[] points; // Array representing the snake's length
+
+    // Array to hold new points for the snake's body when it grows
     public static Point[] newPoints;
+
+    // Color of the snake
     private final AudColor color = AudColor.BLUE;
+
+    // Amount the snake grows by when it eats an apple
     public final int GROW_AMOUNT = 5;
 
-    Snake(int length, int x, int y) {    //三个参数的构造函数
+    // Constructor with three parameters
+    Snake(int length, int x, int y) {
         if (length <= 0) {
-            throw new IllegalArgumentException("The length must be positiv number!");
+            throw new IllegalArgumentException("The length must be a positive number!");
         }
 
-        points = new Point[length]; //4-a erstellen die Anfangslaenge der Schlange
-        for (int i = 1; i < length; i++) {
-            points[i - 1] = new Point(x, y);
-            points[i] = null;   //4-b
-        }
-
-    }
-
-    Snake(int x, int y) {    //两个参数的构造函数
-        length = 8;     
-        points = new Point[length];    //设置蛇的长度
+        points = new Point[length]; // Initially create the length of the snake
         for (int i = 1; i < length; i++) {
             points[i - 1] = new Point(x, y);
             points[i] = null;
         }
     }
 
+    // Constructor with two parameters
+    Snake(int x, int y) {
+        length = 8;
+        points = new Point[length]; // Set the length of the snake
+        for (int i = 1; i < length; i++) {
+            points[i - 1] = new Point(x, y);
+            points[i] = null;
+        }
+    }
+
+    // Method to paint the snake on the screen
     public void paint(AudGraphics g) {
         for (int i = 0; i < points.length; i++) {
             if (points[i] != null) {
@@ -38,23 +52,25 @@ public class Snake {
         }
     }
 
-    //next Direction
+    // Enumeration representing the directions the snake can move
     public enum Direction {
         UP, DOWN, LEFT, RIGHT
     }
 
+    // Next direction the snake will move
     Direction nextDirection = Direction.LEFT;
 
+    // Setter for the next direction of the snake
     public void setNextDirection(Direction D) {
         this.nextDirection = D;
     }
 
-    //Standard-Ausrichtung
+    // Getter for the next direction of the snake
     public Direction getNextDirection() {
         return nextDirection;
-
     }
 
+    // Method to move the snake one step
     public void step() {
         switch (nextDirection) {
             case UP:
@@ -82,10 +98,11 @@ public class Snake {
         }
     }
 
+    // Method to check if the snake collides with another game item
     public boolean collidesWith(GameItem item) {
         for (int i = 0; i < Brick.wall.length; i++) {
             if (Brick.wall[i] != null) {
-                if (points[0].getX() == Brick.wall[i].getX()&&points[0].getY() == Brick.wall[i].getY()) {
+                if (points[0].getX() == Brick.wall[i].getX() && points[0].getY() == Brick.wall[i].getY()) {
                     return true;
                 }
             }
@@ -93,10 +110,11 @@ public class Snake {
         return false;
     }
 
+    // Method to check if the snake collides with itself
     public static boolean collidesWithSelf(){
         for (int i = 3; i < points.length; i++) {
             if (points[i] != null) {
-                if (points[0].getX() == points[i].getX()&&points[0].getY() == points[i].getY()) {
+                if (points[0].getX() == points[i].getX() && points[0].getY() == points[i].getY()) {
                     return true;
                 }
             }
@@ -104,10 +122,11 @@ public class Snake {
         return false;
     }
 
+    // Method to check if the snake collides with a specific point
     public static boolean collidesWith(int x, int y) {
         for (int i = 0; i < points.length; i++) {
             if (points[i] != null) {
-                if (Snake.points[i].getX() == x && Snake.points[i].getY() ==y){
+                if (Snake.points[i].getX() == x && Snake.points[i].getY() == y){
                     return true;
                 }
             }
@@ -115,6 +134,7 @@ public class Snake {
         return false;
     }
 
+    // Method to make the snake grow
     public void grow(int areaSize){
         if (areaSize <= 500) {
             throw new IllegalArgumentException("The area is too small!");
